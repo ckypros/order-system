@@ -17,7 +17,8 @@ const cartReducer = (state, action) => {
       updatedTotalAmount = state.totalAmount + addItem.price * addItem.amount;
 
       // if item is in cart, increment its amount, else add the item
-      updatedItems = state.items.some((item) => item.id === addItem.id)
+      const itemIsInCart = state.items.some((item) => item.id === addItem.id);
+      updatedItems = itemIsInCart
         ? state.items.map((item) =>
             item.id === addItem.id
               ? { ...item, amount: item.amount + addItem.amount }
